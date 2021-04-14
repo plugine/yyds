@@ -1,0 +1,6 @@
+set tempo = 150
+
+pattern(repeat = 2) {
+    symphony:   e5 ++ d5 c5 b4 ++ c5 d5 a4 __ __ __ __ __ __ __
+    background: f2 c3 f3 g3 g2 d3 g3 a3 a2 e3 a3 b3 C4 ++ ++ ++
+}

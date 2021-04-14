@@ -1,0 +1,6 @@
+/internal/parser/.antlr
+/.vscode
+/internal/parser/Music.interp
+/internal/parser/Music.tokens
+/internal/parser/MusicLexer.interp
+/internal/parser/MusicLexer.tokens
