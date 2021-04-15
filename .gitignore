@@ -4,3 +4,4 @@
 /internal/parser/Music.tokens
 /internal/parser/MusicLexer.interp
 /internal/parser/MusicLexer.tokens
+.DS_Store
