@@ -36,19 +36,17 @@ func mix(bytes [][]byte) {
 }
 
 type Note struct {
-	Symbol           Symbol
-	TempoCount       int // 延音几个节拍
-	NoteSign         int // 是什么音符，默认为全音符
-	CurrentNoteIndex int // 当前播放到第几个音符
+	Symbol       Symbol
+	Tempo16Count int // 声音持续多少个 16 分音符，最大为16，最小为1
 
 	wave *SineWave
 }
 
-func (n *Note) buffer(tempoDuration time.Duration) []byte {
+func (n *Note) buffer(tempo16Duration time.Duration) []byte {
 	if n.wave == nil {
-		n.wave = NewSineWave(n.Symbol.Freq(), tempoDuration*time.Duration(n.TempoCount))
+		n.wave = NewSineWave(n.Symbol.Freq(), tempo16Duration*time.Duration(n.Tempo16Count))
 	}
-	buf := make([]byte, timeBytesNum(tempoDuration))
+	buf := make([]byte, timeBytesNum(tempo16Duration))
 	_, err := n.wave.Read(buf)
 	if err != nil {
 		panic(err)
@@ -57,13 +55,13 @@ func (n *Note) buffer(tempoDuration time.Duration) []byte {
 }
 
 type Pattern struct {
-	Repeat        int
-	AfterDelay    int
-	MaxTempoCount int             // 小节最大节拍数
-	TempoMap      map[int][]*Note // 每个节拍对应的音符
+	Repeat          int
+	AfterDelay      int             // 播放完当前小节后，延迟多少 16分音符再播放下一段
+	MaxTempo16Count int             // 小节最大16分音符数
+	TempoMap        map[int][]*Note // 每个16分节拍对应的音符
 }
 
-func (p *Pattern) Play(tempoDuration time.Duration, player *oto.Player) {
+func (p *Pattern) Play(tempo16Duration time.Duration, player *oto.Player) {
 	// repeat
 	for i := 0; i <= p.Repeat; i++ {
 		// 清空已读状态
@@ -74,18 +72,18 @@ func (p *Pattern) Play(tempoDuration time.Duration, player *oto.Player) {
 				}
 			}
 		}
-		for i := 0; i < p.MaxTempoCount; i++ {
+		for i := 0; i < p.MaxTempo16Count; i++ {
 			var bytes [][]byte
 			if currentNoteLines, exists := p.TempoMap[i]; exists {
 				for _, note := range currentNoteLines {
-					bytes = append(bytes, note.buffer(tempoDuration))
+					bytes = append(bytes, note.buffer(tempo16Duration))
 				}
 			}
 			mix(bytes)
 			player.Write(mixedBytes)
 		}
 		// after delay
-		time.Sleep(tempoDuration * time.Duration(p.AfterDelay))
+		time.Sleep(tempo16Duration * time.Duration(p.AfterDelay))
 	}
 }
 
@@ -95,8 +93,9 @@ type Music struct {
 }
 
 func (m Music) Play() {
-	tempoDuration := time.Duration(60.0/float64(m.Tempo)*1000) * time.Millisecond
-	mixedBytes = make([]byte, timeBytesNum(tempoDuration))
+	// 以16分音符为最小播放单位
+	tempo16Duration := time.Duration(60.0/float64(m.Tempo)*1000) * time.Millisecond / 16
+	mixedBytes = make([]byte, timeBytesNum(tempo16Duration))
 	c, err := oto.NewContext(sampleRate, channelNum, bitDepthInBytes, 4096)
 	player := c.NewPlayer()
 	if err != nil {
@@ -104,7 +103,7 @@ func (m Music) Play() {
 	}
 
 	for _, p := range m.Patterns {
-		p.Play(tempoDuration, player)
+		p.Play(tempo16Duration, player)
 	}
 	player.Close()
 }

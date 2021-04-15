@@ -20,6 +20,9 @@ func (l *listener) EnterControlAssign(ctx *ControlAssignContext) {
 }
 
 func (l *listener) parsePatternArgs(pattern *music.Pattern, args IArgsContext) {
+	if args == nil {
+		return
+	}
 	for _, child := range args.GetChildren() {
 		switch ctx := child.(type) {
 		case IArgsContext:
@@ -44,26 +47,49 @@ func (l *listener) EnterPattern(ctx *PatternContext) {
 	for _, c := range ctx.list.GetChildren() {
 		noteLineContext := c.(*NoteLineContext)
 
-		lineTempoCount := len(noteLineContext.notesContext.GetChildren())
-		if pattern.MaxTempoCount < lineTempoCount {
-			pattern.MaxTempoCount = lineTempoCount
-		}
-		lastNote := &music.Note{Symbol: "", TempoCount: 0}
-		for j, n := range noteLineContext.notesContext.GetChildren() {
-			noteToken := n.(*NoteTokenContext)
-			tokenSymbol := music.Symbol(noteToken.GetText())
+		lineTempo16Count := 0
+		lastNote := &music.Note{Symbol: "", Tempo16Count: 0}
+		for _, n := range noteLineContext.notesContext.GetChildren() {
+			noteToken := n.(*NoteWithSignContext)
+			tempo16Count := 16 // 默认为全音符
+			multiple := 1      // 默认不重复
+			if noteToken.noteSignContext != nil {
+				signNum, _ := strconv.Atoi(noteToken.noteSignContext.GetText())
+				if signNum > 0 {
+					tempo16Count = 16 / signNum
+				}
+			}
+			if noteToken.multipleContext != nil {
+				multipleNum, _ := strconv.Atoi(noteToken.multipleContext.GetText())
+				if multipleNum > 0 {
+					multiple = multipleNum
+				}
+			}
+			tokenSymbol := music.Symbol(noteToken.GetTokenContext().GetText())
+
 			if tokenSymbol == music.ContinueSymbol {
 				// 保持延音音符的引用
-				lastNote.TempoCount += 1
-				pattern.TempoMap[j] = append(pattern.TempoMap[j], lastNote)
+				lastNote.Tempo16Count += tempo16Count * multiple
+				for t := 0; t < tempo16Count*multiple; t++ {
+					pattern.TempoMap[t+lineTempo16Count] = append(pattern.TempoMap[t+lineTempo16Count], lastNote)
+				}
+				lineTempo16Count += tempo16Count * multiple
+				continue
+			} else if tokenSymbol == music.SilentSymbol {
+				lineTempo16Count += tempo16Count * multiple
 				continue
 			}
-			if tokenSymbol == music.SilentSymbol {
-				continue
+			for m := 0; m < multiple; m++ {
+				note := &music.Note{Symbol: tokenSymbol, Tempo16Count: tempo16Count}
+				lastNote = note
+				for t := 0; t < tempo16Count; t++ {
+					pattern.TempoMap[t+lineTempo16Count] = append(pattern.TempoMap[t+lineTempo16Count], note)
+				}
+				lineTempo16Count += tempo16Count
 			}
-			note := &music.Note{Symbol: tokenSymbol, TempoCount: 1}
-			lastNote = note
-			pattern.TempoMap[j] = append(pattern.TempoMap[j], note)
+		}
+		if pattern.MaxTempo16Count < lineTempo16Count {
+			pattern.MaxTempo16Count = lineTempo16Count
 		}
 	}
 	l.m.Patterns = append(l.m.Patterns, *pattern)

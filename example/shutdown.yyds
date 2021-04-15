@@ -1,6 +1,6 @@
-set tempo = 150
+set tempo = 120
 
 pattern(repeat = 2) {
-    symphony:   e5 ++ d5 c5 b4 ++ c5 d5 a4 __ __ __ __ __ __ __
-    background: f2 c3 f3 g3 g2 d3 g3 a3 a2 e3 a3 b3 C4 ++ ++ ++
+    symphony:   e5{2} ++ d5{2} c5 b4{2} ++ c5{2} d5 a4 ++*5
+    background: f2     c3{2} f3{2}      a3 g2     d3{2} g3{2}      b3  a2 e3{2} a3{2} b3 C4 ++*2
 }

@@ -16,57 +16,60 @@ var _ = reflect.Copy
 var _ = strconv.Itoa
 
 var parserATN = []uint16{
-	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 15, 99, 4,
-	2, 9, 2, 4, 3, 9, 3, 4, 4, 9, 4, 4, 5, 9, 5, 4, 6, 9, 6, 4, 7, 9, 7, 4,
-	8, 9, 8, 4, 9, 9, 9, 4, 10, 9, 10, 4, 11, 9, 11, 4, 12, 9, 12, 3, 2, 3,
-	2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 7, 3, 33, 10, 3, 12, 3, 14, 3, 36,
-	11, 3, 3, 4, 3, 4, 5, 4, 40, 10, 4, 3, 5, 3, 5, 3, 5, 3, 5, 3, 5, 3, 6,
-	3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6,
-	5, 6, 60, 10, 6, 3, 7, 3, 7, 3, 7, 3, 7, 3, 7, 3, 7, 7, 7, 68, 10, 7, 12,
-	7, 14, 7, 71, 11, 7, 3, 8, 3, 8, 3, 8, 3, 8, 3, 9, 6, 9, 78, 10, 9, 13,
-	9, 14, 9, 79, 3, 10, 3, 10, 3, 10, 3, 10, 3, 11, 6, 11, 87, 10, 11, 13,
-	11, 14, 11, 88, 3, 12, 3, 12, 3, 12, 3, 12, 3, 12, 3, 12, 5, 12, 97, 10,
-	12, 3, 12, 2, 4, 4, 12, 13, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 2,
-	2, 2, 94, 2, 24, 3, 2, 2, 2, 4, 27, 3, 2, 2, 2, 6, 39, 3, 2, 2, 2, 8, 41,
-	3, 2, 2, 2, 10, 59, 3, 2, 2, 2, 12, 61, 3, 2, 2, 2, 14, 72, 3, 2, 2, 2,
-	16, 77, 3, 2, 2, 2, 18, 81, 3, 2, 2, 2, 20, 86, 3, 2, 2, 2, 22, 96, 3,
-	2, 2, 2, 24, 25, 5, 4, 3, 2, 25, 26, 7, 2, 2, 3, 26, 3, 3, 2, 2, 2, 27,
-	28, 8, 3, 1, 2, 28, 29, 5, 6, 4, 2, 29, 34, 3, 2, 2, 2, 30, 31, 12, 3,
-	2, 2, 31, 33, 5, 6, 4, 2, 32, 30, 3, 2, 2, 2, 33, 36, 3, 2, 2, 2, 34, 32,
-	3, 2, 2, 2, 34, 35, 3, 2, 2, 2, 35, 5, 3, 2, 2, 2, 36, 34, 3, 2, 2, 2,
-	37, 40, 5, 8, 5, 2, 38, 40, 5, 10, 6, 2, 39, 37, 3, 2, 2, 2, 39, 38, 3,
-	2, 2, 2, 40, 7, 3, 2, 2, 2, 41, 42, 7, 8, 2, 2, 42, 43, 7, 9, 2, 2, 43,
-	44, 7, 3, 2, 2, 44, 45, 7, 9, 2, 2, 45, 9, 3, 2, 2, 2, 46, 47, 7, 7, 2,
-	2, 47, 48, 7, 10, 2, 2, 48, 49, 5, 16, 9, 2, 49, 50, 7, 11, 2, 2, 50, 60,
-	3, 2, 2, 2, 51, 52, 7, 7, 2, 2, 52, 53, 7, 5, 2, 2, 53, 54, 5, 12, 7, 2,
-	54, 55, 7, 6, 2, 2, 55, 56, 7, 10, 2, 2, 56, 57, 5, 16, 9, 2, 57, 58, 7,
-	11, 2, 2, 58, 60, 3, 2, 2, 2, 59, 46, 3, 2, 2, 2, 59, 51, 3, 2, 2, 2, 60,
-	11, 3, 2, 2, 2, 61, 62, 8, 7, 1, 2, 62, 63, 5, 14, 8, 2, 63, 69, 3, 2,
-	2, 2, 64, 65, 12, 3, 2, 2, 65, 66, 7, 12, 2, 2, 66, 68, 5, 14, 8, 2, 67,
-	64, 3, 2, 2, 2, 68, 71, 3, 2, 2, 2, 69, 67, 3, 2, 2, 2, 69, 70, 3, 2, 2,
-	2, 70, 13, 3, 2, 2, 2, 71, 69, 3, 2, 2, 2, 72, 73, 7, 9, 2, 2, 73, 74,
-	7, 3, 2, 2, 74, 75, 7, 9, 2, 2, 75, 15, 3, 2, 2, 2, 76, 78, 5, 18, 10,
-	2, 77, 76, 3, 2, 2, 2, 78, 79, 3, 2, 2, 2, 79, 77, 3, 2, 2, 2, 79, 80,
-	3, 2, 2, 2, 80, 17, 3, 2, 2, 2, 81, 82, 7, 9, 2, 2, 82, 83, 7, 13, 2, 2,
-	83, 84, 5, 20, 11, 2, 84, 19, 3, 2, 2, 2, 85, 87, 5, 22, 12, 2, 86, 85,
-	3, 2, 2, 2, 87, 88, 3, 2, 2, 2, 88, 86, 3, 2, 2, 2, 88, 89, 3, 2, 2, 2,
-	89, 21, 3, 2, 2, 2, 90, 97, 7, 9, 2, 2, 91, 92, 7, 9, 2, 2, 92, 93, 7,
-	10, 2, 2, 93, 94, 7, 4, 2, 2, 94, 95, 7, 9, 2, 2, 95, 97, 7, 11, 2, 2,
-	96, 90, 3, 2, 2, 2, 96, 91, 3, 2, 2, 2, 97, 23, 3, 2, 2, 2, 9, 34, 39,
-	59, 69, 79, 88, 96,
+	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 15, 107,
+	4, 2, 9, 2, 4, 3, 9, 3, 4, 4, 9, 4, 4, 5, 9, 5, 4, 6, 9, 6, 4, 7, 9, 7,
+	4, 8, 9, 8, 4, 9, 9, 9, 4, 10, 9, 10, 4, 11, 9, 11, 4, 12, 9, 12, 3, 2,
+	3, 2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 7, 3, 33, 10, 3, 12, 3, 14, 3,
+	36, 11, 3, 3, 4, 3, 4, 5, 4, 40, 10, 4, 3, 5, 3, 5, 3, 5, 3, 5, 3, 5, 3,
+	6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3,
+	6, 5, 6, 60, 10, 6, 3, 7, 3, 7, 3, 7, 3, 7, 3, 7, 3, 7, 7, 7, 68, 10, 7,
+	12, 7, 14, 7, 71, 11, 7, 3, 8, 3, 8, 3, 8, 3, 8, 3, 9, 6, 9, 78, 10, 9,
+	13, 9, 14, 9, 79, 3, 10, 3, 10, 3, 10, 3, 10, 3, 11, 6, 11, 87, 10, 11,
+	13, 11, 14, 11, 88, 3, 12, 3, 12, 3, 12, 3, 12, 3, 12, 3, 12, 3, 12, 3,
+	12, 3, 12, 3, 12, 3, 12, 3, 12, 3, 12, 3, 12, 5, 12, 105, 10, 12, 3, 12,
+	2, 4, 4, 12, 13, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 2, 2, 2, 104,
+	2, 24, 3, 2, 2, 2, 4, 27, 3, 2, 2, 2, 6, 39, 3, 2, 2, 2, 8, 41, 3, 2, 2,
+	2, 10, 59, 3, 2, 2, 2, 12, 61, 3, 2, 2, 2, 14, 72, 3, 2, 2, 2, 16, 77,
+	3, 2, 2, 2, 18, 81, 3, 2, 2, 2, 20, 86, 3, 2, 2, 2, 22, 104, 3, 2, 2, 2,
+	24, 25, 5, 4, 3, 2, 25, 26, 7, 2, 2, 3, 26, 3, 3, 2, 2, 2, 27, 28, 8, 3,
+	1, 2, 28, 29, 5, 6, 4, 2, 29, 34, 3, 2, 2, 2, 30, 31, 12, 3, 2, 2, 31,
+	33, 5, 6, 4, 2, 32, 30, 3, 2, 2, 2, 33, 36, 3, 2, 2, 2, 34, 32, 3, 2, 2,
+	2, 34, 35, 3, 2, 2, 2, 35, 5, 3, 2, 2, 2, 36, 34, 3, 2, 2, 2, 37, 40, 5,
+	8, 5, 2, 38, 40, 5, 10, 6, 2, 39, 37, 3, 2, 2, 2, 39, 38, 3, 2, 2, 2, 40,
+	7, 3, 2, 2, 2, 41, 42, 7, 8, 2, 2, 42, 43, 7, 9, 2, 2, 43, 44, 7, 3, 2,
+	2, 44, 45, 7, 9, 2, 2, 45, 9, 3, 2, 2, 2, 46, 47, 7, 7, 2, 2, 47, 48, 7,
+	10, 2, 2, 48, 49, 5, 16, 9, 2, 49, 50, 7, 11, 2, 2, 50, 60, 3, 2, 2, 2,
+	51, 52, 7, 7, 2, 2, 52, 53, 7, 4, 2, 2, 53, 54, 5, 12, 7, 2, 54, 55, 7,
+	5, 2, 2, 55, 56, 7, 10, 2, 2, 56, 57, 5, 16, 9, 2, 57, 58, 7, 11, 2, 2,
+	58, 60, 3, 2, 2, 2, 59, 46, 3, 2, 2, 2, 59, 51, 3, 2, 2, 2, 60, 11, 3,
+	2, 2, 2, 61, 62, 8, 7, 1, 2, 62, 63, 5, 14, 8, 2, 63, 69, 3, 2, 2, 2, 64,
+	65, 12, 3, 2, 2, 65, 66, 7, 12, 2, 2, 66, 68, 5, 14, 8, 2, 67, 64, 3, 2,
+	2, 2, 68, 71, 3, 2, 2, 2, 69, 67, 3, 2, 2, 2, 69, 70, 3, 2, 2, 2, 70, 13,
+	3, 2, 2, 2, 71, 69, 3, 2, 2, 2, 72, 73, 7, 9, 2, 2, 73, 74, 7, 3, 2, 2,
+	74, 75, 7, 9, 2, 2, 75, 15, 3, 2, 2, 2, 76, 78, 5, 18, 10, 2, 77, 76, 3,
+	2, 2, 2, 78, 79, 3, 2, 2, 2, 79, 77, 3, 2, 2, 2, 79, 80, 3, 2, 2, 2, 80,
+	17, 3, 2, 2, 2, 81, 82, 7, 9, 2, 2, 82, 83, 7, 13, 2, 2, 83, 84, 5, 20,
+	11, 2, 84, 19, 3, 2, 2, 2, 85, 87, 5, 22, 12, 2, 86, 85, 3, 2, 2, 2, 87,
+	88, 3, 2, 2, 2, 88, 86, 3, 2, 2, 2, 88, 89, 3, 2, 2, 2, 89, 21, 3, 2, 2,
+	2, 90, 105, 7, 9, 2, 2, 91, 92, 7, 9, 2, 2, 92, 93, 7, 6, 2, 2, 93, 105,
+	7, 9, 2, 2, 94, 95, 7, 9, 2, 2, 95, 96, 7, 10, 2, 2, 96, 97, 7, 9, 2, 2,
+	97, 105, 7, 11, 2, 2, 98, 99, 7, 9, 2, 2, 99, 100, 7, 10, 2, 2, 100, 101,
+	7, 9, 2, 2, 101, 102, 7, 11, 2, 2, 102, 103, 7, 6, 2, 2, 103, 105, 7, 9,
+	2, 2, 104, 90, 3, 2, 2, 2, 104, 91, 3, 2, 2, 2, 104, 94, 3, 2, 2, 2, 104,
+	98, 3, 2, 2, 2, 105, 23, 3, 2, 2, 2, 9, 34, 39, 59, 69, 79, 88, 104,
 }
 var literalNames = []string{
-	"", "'='", "'\\'", "'('", "')'", "'pattern'", "'set'", "", "'{'", "'}'",
+	"", "'='", "'('", "')'", "'*'", "'pattern'", "'set'", "", "'{'", "'}'",
 	"','", "':'",
 }
 var symbolicNames = []string{
-	"", "", "", "LEFT_RBRACKET", "RIGHT_RBRACKET", "PATTERN", "SET", "TOKEN",
-	"L_CURLY", "R_CURLY", "COMMA", "COLON", "WHITESPACE", "LINE_COMMENT",
+	"", "", "LEFT_RBRACKET", "RIGHT_RBRACKET", "MULTIPLE", "PATTERN", "SET",
+	"TOKEN", "L_CURLY", "R_CURLY", "COMMA", "COLON", "WHITESPACE", "LINE_COMMENT",
 }
 
 var ruleNames = []string{
 	"music", "content", "expression", "controlAssign", "pattern", "args", "assign",
-	"noteList", "noteLine", "notes", "noteToken",
+	"noteList", "noteLine", "notes", "noteWithSign",
 }
 
 type MusicParser struct {
@@ -102,9 +105,9 @@ func NewMusicParser(input antlr.TokenStream) *MusicParser {
 const (
 	MusicParserEOF            = antlr.TokenEOF
 	MusicParserT__0           = 1
-	MusicParserT__1           = 2
-	MusicParserLEFT_RBRACKET  = 3
-	MusicParserRIGHT_RBRACKET = 4
+	MusicParserLEFT_RBRACKET  = 2
+	MusicParserRIGHT_RBRACKET = 3
+	MusicParserMULTIPLE       = 4
 	MusicParserPATTERN        = 5
 	MusicParserSET            = 6
 	MusicParserTOKEN          = 7
@@ -128,7 +131,7 @@ const (
 	MusicParserRULE_noteList      = 7
 	MusicParserRULE_noteLine      = 8
 	MusicParserRULE_notes         = 9
-	MusicParserRULE_noteToken     = 10
+	MusicParserRULE_noteWithSign  = 10
 )
 
 // IMusicContext is an interface to support dynamic dispatch.
@@ -1467,27 +1470,27 @@ func NewNotesContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoki
 
 func (s *NotesContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *NotesContext) AllNoteToken() []INoteTokenContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*INoteTokenContext)(nil)).Elem())
-	var tst = make([]INoteTokenContext, len(ts))
+func (s *NotesContext) AllNoteWithSign() []INoteWithSignContext {
+	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*INoteWithSignContext)(nil)).Elem())
+	var tst = make([]INoteWithSignContext, len(ts))
 
 	for i, t := range ts {
 		if t != nil {
-			tst[i] = t.(INoteTokenContext)
+			tst[i] = t.(INoteWithSignContext)
 		}
 	}
 
 	return tst
 }
 
-func (s *NotesContext) NoteToken(i int) INoteTokenContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*INoteTokenContext)(nil)).Elem(), i)
+func (s *NotesContext) NoteWithSign(i int) INoteWithSignContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*INoteWithSignContext)(nil)).Elem(), i)
 
 	if t == nil {
 		return nil
 	}
 
-	return t.(INoteTokenContext)
+	return t.(INoteWithSignContext)
 }
 
 func (s *NotesContext) GetRuleContext() antlr.RuleContext {
@@ -1541,7 +1544,7 @@ func (p *MusicParser) Notes() (localctx INotesContext) {
 		case 1:
 			{
 				p.SetState(83)
-				p.NoteToken()
+				p.NoteWithSign()
 			}
 
 		default:
@@ -1556,8 +1559,8 @@ func (p *MusicParser) Notes() (localctx INotesContext) {
 	return localctx
 }
 
-// INoteTokenContext is an interface to support dynamic dispatch.
-type INoteTokenContext interface {
+// INoteWithSignContext is an interface to support dynamic dispatch.
+type INoteWithSignContext interface {
 	antlr.ParserRuleContext
 
 	// GetParser returns the parser.
@@ -1566,95 +1569,110 @@ type INoteTokenContext interface {
 	// GetTokenContext returns the tokenContext token.
 	GetTokenContext() antlr.Token
 
+	// GetMultipleContext returns the multipleContext token.
+	GetMultipleContext() antlr.Token
+
 	// GetNoteSignContext returns the noteSignContext token.
 	GetNoteSignContext() antlr.Token
 
 	// SetTokenContext sets the tokenContext token.
 	SetTokenContext(antlr.Token)
 
+	// SetMultipleContext sets the multipleContext token.
+	SetMultipleContext(antlr.Token)
+
 	// SetNoteSignContext sets the noteSignContext token.
 	SetNoteSignContext(antlr.Token)
 
-	// IsNoteTokenContext differentiates from other interfaces.
-	IsNoteTokenContext()
+	// IsNoteWithSignContext differentiates from other interfaces.
+	IsNoteWithSignContext()
 }
 
-type NoteTokenContext struct {
+type NoteWithSignContext struct {
 	*antlr.BaseParserRuleContext
 	parser          antlr.Parser
 	tokenContext    antlr.Token
+	multipleContext antlr.Token
 	noteSignContext antlr.Token
 }
 
-func NewEmptyNoteTokenContext() *NoteTokenContext {
-	var p = new(NoteTokenContext)
+func NewEmptyNoteWithSignContext() *NoteWithSignContext {
+	var p = new(NoteWithSignContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = MusicParserRULE_noteToken
+	p.RuleIndex = MusicParserRULE_noteWithSign
 	return p
 }
 
-func (*NoteTokenContext) IsNoteTokenContext() {}
+func (*NoteWithSignContext) IsNoteWithSignContext() {}
 
-func NewNoteTokenContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *NoteTokenContext {
-	var p = new(NoteTokenContext)
+func NewNoteWithSignContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *NoteWithSignContext {
+	var p = new(NoteWithSignContext)
 
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = MusicParserRULE_noteToken
+	p.RuleIndex = MusicParserRULE_noteWithSign
 
 	return p
 }
 
-func (s *NoteTokenContext) GetParser() antlr.Parser { return s.parser }
+func (s *NoteWithSignContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *NoteTokenContext) GetTokenContext() antlr.Token { return s.tokenContext }
+func (s *NoteWithSignContext) GetTokenContext() antlr.Token { return s.tokenContext }
 
-func (s *NoteTokenContext) GetNoteSignContext() antlr.Token { return s.noteSignContext }
+func (s *NoteWithSignContext) GetMultipleContext() antlr.Token { return s.multipleContext }
 
-func (s *NoteTokenContext) SetTokenContext(v antlr.Token) { s.tokenContext = v }
+func (s *NoteWithSignContext) GetNoteSignContext() antlr.Token { return s.noteSignContext }
 
-func (s *NoteTokenContext) SetNoteSignContext(v antlr.Token) { s.noteSignContext = v }
+func (s *NoteWithSignContext) SetTokenContext(v antlr.Token) { s.tokenContext = v }
 
-func (s *NoteTokenContext) AllTOKEN() []antlr.TerminalNode {
+func (s *NoteWithSignContext) SetMultipleContext(v antlr.Token) { s.multipleContext = v }
+
+func (s *NoteWithSignContext) SetNoteSignContext(v antlr.Token) { s.noteSignContext = v }
+
+func (s *NoteWithSignContext) AllTOKEN() []antlr.TerminalNode {
 	return s.GetTokens(MusicParserTOKEN)
 }
 
-func (s *NoteTokenContext) TOKEN(i int) antlr.TerminalNode {
+func (s *NoteWithSignContext) TOKEN(i int) antlr.TerminalNode {
 	return s.GetToken(MusicParserTOKEN, i)
 }
 
-func (s *NoteTokenContext) L_CURLY() antlr.TerminalNode {
+func (s *NoteWithSignContext) MULTIPLE() antlr.TerminalNode {
+	return s.GetToken(MusicParserMULTIPLE, 0)
+}
+
+func (s *NoteWithSignContext) L_CURLY() antlr.TerminalNode {
 	return s.GetToken(MusicParserL_CURLY, 0)
 }
 
-func (s *NoteTokenContext) R_CURLY() antlr.TerminalNode {
+func (s *NoteWithSignContext) R_CURLY() antlr.TerminalNode {
 	return s.GetToken(MusicParserR_CURLY, 0)
 }
 
-func (s *NoteTokenContext) GetRuleContext() antlr.RuleContext {
+func (s *NoteWithSignContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *NoteTokenContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+func (s *NoteWithSignContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *NoteTokenContext) EnterRule(listener antlr.ParseTreeListener) {
+func (s *NoteWithSignContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(MusicListener); ok {
-		listenerT.EnterNoteToken(s)
+		listenerT.EnterNoteWithSign(s)
 	}
 }
 
-func (s *NoteTokenContext) ExitRule(listener antlr.ParseTreeListener) {
+func (s *NoteWithSignContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(MusicListener); ok {
-		listenerT.ExitNoteToken(s)
+		listenerT.ExitNoteWithSign(s)
 	}
 }
 
-func (p *MusicParser) NoteToken() (localctx INoteTokenContext) {
-	localctx = NewNoteTokenContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 20, MusicParserRULE_noteToken)
+func (p *MusicParser) NoteWithSign() (localctx INoteWithSignContext) {
+	localctx = NewNoteWithSignContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 20, MusicParserRULE_noteWithSign)
 
 	defer func() {
 		p.ExitRule()
@@ -1672,7 +1690,7 @@ func (p *MusicParser) NoteToken() (localctx INoteTokenContext) {
 		}
 	}()
 
-	p.SetState(94)
+	p.SetState(102)
 	p.GetErrorHandler().Sync(p)
 	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 6, p.GetParserRuleContext()) {
 	case 1:
@@ -1682,7 +1700,7 @@ func (p *MusicParser) NoteToken() (localctx INoteTokenContext) {
 
 			var _m = p.Match(MusicParserTOKEN)
 
-			localctx.(*NoteTokenContext).tokenContext = _m
+			localctx.(*NoteWithSignContext).tokenContext = _m
 		}
 
 	case 2:
@@ -1692,26 +1710,79 @@ func (p *MusicParser) NoteToken() (localctx INoteTokenContext) {
 
 			var _m = p.Match(MusicParserTOKEN)
 
-			localctx.(*NoteTokenContext).tokenContext = _m
+			localctx.(*NoteWithSignContext).tokenContext = _m
 		}
 		{
 			p.SetState(90)
-			p.Match(MusicParserL_CURLY)
+			p.Match(MusicParserMULTIPLE)
 		}
 		{
 			p.SetState(91)
-			p.Match(MusicParserT__1)
+
+			var _m = p.Match(MusicParserTOKEN)
+
+			localctx.(*NoteWithSignContext).multipleContext = _m
 		}
+
+	case 3:
+		p.EnterOuterAlt(localctx, 3)
 		{
 			p.SetState(92)
 
 			var _m = p.Match(MusicParserTOKEN)
 
-			localctx.(*NoteTokenContext).noteSignContext = _m
+			localctx.(*NoteWithSignContext).tokenContext = _m
 		}
 		{
 			p.SetState(93)
+			p.Match(MusicParserL_CURLY)
+		}
+		{
+			p.SetState(94)
+
+			var _m = p.Match(MusicParserTOKEN)
+
+			localctx.(*NoteWithSignContext).noteSignContext = _m
+		}
+		{
+			p.SetState(95)
 			p.Match(MusicParserR_CURLY)
+		}
+
+	case 4:
+		p.EnterOuterAlt(localctx, 4)
+		{
+			p.SetState(96)
+
+			var _m = p.Match(MusicParserTOKEN)
+
+			localctx.(*NoteWithSignContext).tokenContext = _m
+		}
+		{
+			p.SetState(97)
+			p.Match(MusicParserL_CURLY)
+		}
+		{
+			p.SetState(98)
+
+			var _m = p.Match(MusicParserTOKEN)
+
+			localctx.(*NoteWithSignContext).noteSignContext = _m
+		}
+		{
+			p.SetState(99)
+			p.Match(MusicParserR_CURLY)
+		}
+		{
+			p.SetState(100)
+			p.Match(MusicParserMULTIPLE)
+		}
+		{
+			p.SetState(101)
+
+			var _m = p.Match(MusicParserTOKEN)
+
+			localctx.(*NoteWithSignContext).multipleContext = _m
 		}
 
 	}

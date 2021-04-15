@@ -15,16 +15,20 @@ assign: key = TOKEN '=' value = TOKEN;
 noteList: noteLine+;
 noteLine: signContext = TOKEN COLON notesContext = notes;
 
-notes: noteToken+;
+notes: noteWithSign+;
 
-noteToken:
+noteWithSign:
 	tokenContext = TOKEN
-	| tokenContext = TOKEN L_CURLY '\\' noteSignContext = TOKEN R_CURLY;
+	| tokenContext = TOKEN MULTIPLE multipleContext = TOKEN
+	| tokenContext = TOKEN L_CURLY noteSignContext = TOKEN R_CURLY
+	| tokenContext = TOKEN L_CURLY noteSignContext = TOKEN R_CURLY MULTIPLE multipleContext =
+		TOKEN;
 
 // Lexer
 
 LEFT_RBRACKET: '(';
 RIGHT_RBRACKET: ')';
+MULTIPLE: '*';
 PATTERN: 'pattern';
 SET: 'set';
 TOKEN: [a-zA-Z0-9_+]+;

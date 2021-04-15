@@ -32,8 +32,8 @@ var serializedLexerAtn = []uint16{
 	2, 2, 2, 7, 33, 3, 2, 2, 2, 9, 35, 3, 2, 2, 2, 11, 37, 3, 2, 2, 2, 13,
 	45, 3, 2, 2, 2, 15, 50, 3, 2, 2, 2, 17, 54, 3, 2, 2, 2, 19, 56, 3, 2, 2,
 	2, 21, 58, 3, 2, 2, 2, 23, 60, 3, 2, 2, 2, 25, 63, 3, 2, 2, 2, 27, 69,
-	3, 2, 2, 2, 29, 30, 7, 63, 2, 2, 30, 4, 3, 2, 2, 2, 31, 32, 7, 94, 2, 2,
-	32, 6, 3, 2, 2, 2, 33, 34, 7, 42, 2, 2, 34, 8, 3, 2, 2, 2, 35, 36, 7, 43,
+	3, 2, 2, 2, 29, 30, 7, 63, 2, 2, 30, 4, 3, 2, 2, 2, 31, 32, 7, 42, 2, 2,
+	32, 6, 3, 2, 2, 2, 33, 34, 7, 43, 2, 2, 34, 8, 3, 2, 2, 2, 35, 36, 7, 44,
 	2, 2, 36, 10, 3, 2, 2, 2, 37, 38, 7, 114, 2, 2, 38, 39, 7, 99, 2, 2, 39,
 	40, 7, 118, 2, 2, 40, 41, 7, 118, 2, 2, 41, 42, 7, 103, 2, 2, 42, 43, 7,
 	116, 2, 2, 43, 44, 7, 112, 2, 2, 44, 12, 3, 2, 2, 2, 45, 46, 7, 117, 2,
@@ -60,18 +60,18 @@ var lexerModeNames = []string{
 }
 
 var lexerLiteralNames = []string{
-	"", "'='", "'\\'", "'('", "')'", "'pattern'", "'set'", "", "'{'", "'}'",
+	"", "'='", "'('", "')'", "'*'", "'pattern'", "'set'", "", "'{'", "'}'",
 	"','", "':'",
 }
 
 var lexerSymbolicNames = []string{
-	"", "", "", "LEFT_RBRACKET", "RIGHT_RBRACKET", "PATTERN", "SET", "TOKEN",
-	"L_CURLY", "R_CURLY", "COMMA", "COLON", "WHITESPACE", "LINE_COMMENT",
+	"", "", "LEFT_RBRACKET", "RIGHT_RBRACKET", "MULTIPLE", "PATTERN", "SET",
+	"TOKEN", "L_CURLY", "R_CURLY", "COMMA", "COLON", "WHITESPACE", "LINE_COMMENT",
 }
 
 var lexerRuleNames = []string{
-	"T__0", "T__1", "LEFT_RBRACKET", "RIGHT_RBRACKET", "PATTERN", "SET", "TOKEN",
-	"L_CURLY", "R_CURLY", "COMMA", "COLON", "WHITESPACE", "LINE_COMMENT",
+	"T__0", "LEFT_RBRACKET", "RIGHT_RBRACKET", "MULTIPLE", "PATTERN", "SET",
+	"TOKEN", "L_CURLY", "R_CURLY", "COMMA", "COLON", "WHITESPACE", "LINE_COMMENT",
 }
 
 type MusicLexer struct {
@@ -112,9 +112,9 @@ func NewMusicLexer(input antlr.CharStream) *MusicLexer {
 // MusicLexer tokens.
 const (
 	MusicLexerT__0           = 1
-	MusicLexerT__1           = 2
-	MusicLexerLEFT_RBRACKET  = 3
-	MusicLexerRIGHT_RBRACKET = 4
+	MusicLexerLEFT_RBRACKET  = 2
+	MusicLexerRIGHT_RBRACKET = 3
+	MusicLexerMULTIPLE       = 4
 	MusicLexerPATTERN        = 5
 	MusicLexerSET            = 6
 	MusicLexerTOKEN          = 7

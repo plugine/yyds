@@ -38,8 +38,8 @@ type MusicListener interface {
 	// EnterNotes is called when entering the notes production.
 	EnterNotes(c *NotesContext)
 
-	// EnterNoteToken is called when entering the noteToken production.
-	EnterNoteToken(c *NoteTokenContext)
+	// EnterNoteWithSign is called when entering the noteWithSign production.
+	EnterNoteWithSign(c *NoteWithSignContext)
 
 	// ExitMusic is called when exiting the music production.
 	ExitMusic(c *MusicContext)
@@ -71,6 +71,6 @@ type MusicListener interface {
 	// ExitNotes is called when exiting the notes production.
 	ExitNotes(c *NotesContext)
 
-	// ExitNoteToken is called when exiting the noteToken production.
-	ExitNoteToken(c *NoteTokenContext)
+	// ExitNoteWithSign is called when exiting the noteWithSign production.
+	ExitNoteWithSign(c *NoteWithSignContext)
 }

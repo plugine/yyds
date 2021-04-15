@@ -81,8 +81,8 @@ func (s *BaseMusicListener) EnterNotes(ctx *NotesContext) {}
 // ExitNotes is called when production notes is exited.
 func (s *BaseMusicListener) ExitNotes(ctx *NotesContext) {}
 
-// EnterNoteToken is called when production noteToken is entered.
-func (s *BaseMusicListener) EnterNoteToken(ctx *NoteTokenContext) {}
+// EnterNoteWithSign is called when production noteWithSign is entered.
+func (s *BaseMusicListener) EnterNoteWithSign(ctx *NoteWithSignContext) {}
 
-// ExitNoteToken is called when production noteToken is exited.
-func (s *BaseMusicListener) ExitNoteToken(ctx *NoteTokenContext) {}
+// ExitNoteWithSign is called when production noteWithSign is exited.
+func (s *BaseMusicListener) ExitNoteWithSign(ctx *NoteWithSignContext) {}
