@@ -1,0 +1,21 @@
+set tempo = 120
+
+pattern(repeat = 0, after_delay=1) {
+    chapter1: c4 d4 e4 c4 d4 g4 g4 __ e4 a4 a4 a4 g4 g4 e4
+    human:    __ __ __ __ __ __ __ a2
+}
+
+pattern(repear=0, after_delay=1) {
+    chapter2: c4 c4 c4 a4 g4 e4 g4 __ d4 d4 e4 e4 d4 ++ ++
+    human:    __ __ __ __ __ __ __ a2
+}
+
+pattern(repeat = 0, after_delay=1) {
+    chapter1: c4 d4 e4 c4 d4 g4 g4 __ e4 a4 a4 a4 g4 g4 e4
+    human:    __ __ __ __ __ __ __ a2
+}
+
+pattern(repear=0) {
+    chapter2: c4 c4 c4 a4 g4 e4 g4 __ d4 d4 e4 e4 d4 ++ ++
+    human:    __ __ __ __ __ __ __ a2
+}
